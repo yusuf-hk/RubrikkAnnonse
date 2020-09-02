@@ -1,4 +1,4 @@
-package org.yusuf.javabrain.security.model;
+package org.yusuf.javabrain.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "User")
+@Table(name = "\"User\"")
 public class User implements Serializable
 {
     @Id
@@ -16,6 +16,7 @@ public class User implements Serializable
     private String email;
     private String password;
     private String created;
+    private String role;
 
     public User(String firstName, String lastName, String email, String password)
     {
@@ -33,6 +34,7 @@ public class User implements Serializable
     public void onCreate()
     {
         created = new SimpleDateFormat("yyyy.MM.dd").format(new Date());
+        role = "Customer";
     }
 
     public String getCreated()

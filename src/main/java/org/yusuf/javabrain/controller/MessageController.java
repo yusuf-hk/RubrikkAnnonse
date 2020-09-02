@@ -3,6 +3,7 @@ package org.yusuf.javabrain.controller;
 import org.yusuf.javabrain.model.Message;
 import org.yusuf.javabrain.service.MessageService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -14,7 +15,7 @@ public class MessageController
 {
     private MessageService messageService = new MessageService();
 
-
+    @RolesAllowed("Customer")
     @GET
     public List<Message> getMessages()
     {

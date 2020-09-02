@@ -42,7 +42,6 @@ public class ItemService
 
     public Item addItem(Item item)
     {
-
         em = emf.createEntityManager();
         String query = "SELECT max (id) from Item";
         TypedQuery<Integer> tq = em.createQuery(query, Integer.class);

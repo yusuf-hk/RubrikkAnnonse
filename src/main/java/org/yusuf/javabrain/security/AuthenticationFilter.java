@@ -83,7 +83,7 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
             if (method.isAnnotationPresent(RolesAllowed.class))
             {
                 RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
-                Set<String> rolesSet = new HashSet<String>(Arrays.asList(rolesAnnotation.value()));
+                Set<String> rolesSet = new HashSet<>(Arrays.asList(rolesAnnotation.value()));
 
                 //Is user valid?
                 if (!isUserAllowed(username, password, rolesSet))
@@ -99,7 +99,19 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
     private boolean isUserAllowed(final String username, final String password, final Set<String> rolesSet)
     {
         boolean isAllowed = false;
+        AuthenticationService authenticationService = new AuthenticationService();
+        System.out.println("yes");
+        if(authenticationService.checkEmailExist(username) && authenticationService.checkPasswordExist(password))
+        {
+            String userRole = "Customer";
+            System.out.println("yes1");
 
+            if(rolesSet.contains(userRole))
+            {
+                System.out.println("yes2");
+                isAllowed = true;
+            }
+        }
         //Step 1. Fetch password from database and match with password in argument
         //If both match then get the defined role for user from database and continue; else return isAllowed [false]
         //Access the database and do this part yourself
@@ -107,7 +119,7 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 
         if (username.equals("howtodoinjava") && password.equals("password"))
         {
-            String userRole = "ADMIN";
+            String userRole = "Admin";
 
             //Step 2. Verify user role
             if (rolesSet.contains(userRole))
