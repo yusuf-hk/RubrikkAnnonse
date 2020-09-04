@@ -10,9 +10,9 @@
         <!-- Define the class for Hibernate which implements JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Define the object that should be persisted in the database -->
-        <class>org.yusuf.javabrain.model.Message</class>
-        <class>org.yusuf.javabrain.model.Item</class>
-        <class>org.yusuf.javabrain.model.User</class>
+        <class>org.yusuf.javabrain.rubrikkannonse.model.Message</class>
+        <class>org.yusuf.javabrain.rubrikkannonse.model.Item</class>
+        <class>org.yusuf.javabrain.rubrikkannonse.model.User</class>
         <properties>
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
