@@ -30,10 +30,12 @@ public class ItemService
         {
             item = tq.getSingleResult();
             return item;
-        } catch (NoResultException ex)
+        }
+        catch (NoResultException ex)
         {
             System.out.println(ex);
-        } finally
+        }
+        finally
         {
             em.close();
         }
