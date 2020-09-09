@@ -23,7 +23,7 @@ import java.util.Date;
 @Path("auth")
 public class AuthenticationController
 {
-    private final Logger LOGGER = Logger.getLogger(AuthenticationController.class);
+    private AuthenticationService authenticationService = new AuthenticationService();
 
     @POST
     @Path("/register")
@@ -33,7 +33,7 @@ public class AuthenticationController
     {
         ResponsePojo responsePojo = new ResponsePojo();
         // Check if user email and password are presented.
-        Response res = validateUserProps(user);
+        Response res = authenticationService.validateUserProps(user);
         if (res != null) return res;
 
         //Save user to database
@@ -46,7 +46,7 @@ public class AuthenticationController
             return Response.status(422).entity(responsePojo).build();
         }
 
-        responsePojo.setToken(generateToken(user));
+        responsePojo.setToken(authenticationService.generateToken(user));
 
         return Response.ok().entity(responsePojo).build();
     }
@@ -60,7 +60,7 @@ public class AuthenticationController
         ResponsePojo responsePojo = new ResponsePojo();
 
         // Check if user email and password are presented.
-        Response res = validateUserProps(user);
+        Response res = authenticationService.validateUserProps(user);
         if (res != null) return res;
 
         // Find user by email.
@@ -75,7 +75,7 @@ public class AuthenticationController
 
         if (existingUser.getPassword().equals(CypherUtils.getSHA512SecurePassword(user.getPassword())))
         {
-            responsePojo.setToken(generateToken(existingUser));
+            responsePojo.setToken(authenticationService.generateToken(existingUser));
         } else
         {
             responsePojo.setError("Authentication failed.");
@@ -89,79 +89,17 @@ public class AuthenticationController
     @Produces(MediaType.APPLICATION_JSON)
     public Response protectedResource(@HeaderParam("authorization") String token)
     {
-        User user = validateToken(token);
+        User user = authenticationService.validateToken(token);
         if (user != null)
         {
             user.setPassword(null);
             return Response.ok().entity(user).build();
-        } else
+        }
+        else
         {
             ResponsePojo responsePojo = new ResponsePojo();
             responsePojo.setError("Invalid token.");
             return Response.ok().entity(responsePojo).build();
         }
-    }
-
-    private String generateToken(User user)
-    {
-        try
-        {
-            Algorithm algorithm = Algorithm.HMAC256(Constants.JWT_TOKEN_KEY);
-            Date expirationDate = Date.from(ZonedDateTime.now().plusHours(24).toInstant());
-            Date issuedAt = Date.from(ZonedDateTime.now().toInstant());
-            return JWT.create()
-                    .withIssuedAt(issuedAt) // Issue date.
-                    .withExpiresAt(expirationDate) // Expiration date.
-                    .withClaim("userId", user.getId()) // User id - here we can put anything we want, but for the example userId is appropriate.
-                    .withIssuer("jwtauth") // Issuer of the token.
-                    .sign(algorithm); // And the signing algorithm.
-        } catch (JWTCreationException e)
-        {
-            LOGGER.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
-    private User validateToken(String token)
-    {
-        try
-        {
-            if (token != null)
-            {
-                Algorithm algorithm = Algorithm.HMAC256(Constants.JWT_TOKEN_KEY);
-                JWTVerifier verifier = JWT.require(algorithm)
-                        .withIssuer("jwtauth")
-                        .build(); //Reusable verifier instance
-                DecodedJWT jwt = verifier.verify(token);
-
-                //Get the userId from token claim.
-                Claim userId = jwt.getClaim("userId");
-
-                // Find user by token subject(id).
-                UserService userService = new UserService();
-                return userService.findUserById(userId.asLong());
-            }
-        } catch (JWTVerificationException e)
-        {
-            LOGGER.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
-    private Response
-    validateUserProps(User user)
-    {
-        ResponsePojo responsePojo = new ResponsePojo();
-        if (user.getEmail() == null || user.getEmail().isEmpty())
-        {
-            responsePojo.setError("Email is required!");
-            return Response.status(422).entity(responsePojo).build();
-        }
-        if (user.getPassword() == null || user.getPassword().isEmpty())
-        {
-            responsePojo.setError("Password is required!");
-            return Response.status(422).entity(responsePojo).build();
-        }
-        return null;
     }
 }

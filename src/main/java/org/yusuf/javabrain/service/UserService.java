@@ -27,6 +27,7 @@ public class UserService
             et = em.getTransaction();
             et.begin();
             user.setId(tq.getSingleResult() + 1);
+            user.setPassword(CypherUtils.getSHA512SecurePassword(user.getPassword()));
             em.persist(user);
             et.commit();
             found = true;
@@ -66,7 +67,7 @@ public class UserService
         return user;
     }
 
-    public User findUserById(Long id)
+    public User findUserById(Integer id)
     {
         em = emf.createEntityManager();
         String query = "SELECT m FROM User m WHERE m.id = :id";

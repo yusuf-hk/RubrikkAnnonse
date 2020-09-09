@@ -31,9 +31,9 @@ public class ItemService
             item = tq.getSingleResult();
             return item;
         }
-        catch (NoResultException ex)
+        catch (NoResultException e)
         {
-            System.out.println(ex);
+            e.printStackTrace();
         }
         finally
         {

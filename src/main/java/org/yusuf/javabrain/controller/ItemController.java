@@ -1,11 +1,15 @@
 package org.yusuf.javabrain.controller;
 
 import org.yusuf.javabrain.model.Item;
+import org.yusuf.javabrain.model.User;
+import org.yusuf.javabrain.security.AuthenticationService;
+import org.yusuf.javabrain.security.ResponsePojo;
 import org.yusuf.javabrain.service.ItemService;
 
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("items")
@@ -14,8 +18,8 @@ import java.util.List;
 public class ItemController
 {
     private ItemService itemService = new ItemService();
+    private AuthenticationService authenticationService = new AuthenticationService();
 
-    @PermitAll
     @GET
     public List<Item> getItems()
     {
@@ -23,9 +27,19 @@ public class ItemController
     }
 
     @POST
-    public Item addItem(Item item)
+    public Response addItem(@HeaderParam("authorization") String token, Item item)
     {
-        return itemService.addItem(item);
+        User user = authenticationService.validateToken(token);
+        if (user != null)
+        {
+            return Response.ok().entity(itemService.addItem(item)).build();
+        }
+        else
+        {
+            ResponsePojo responsePojo = new ResponsePojo();
+            responsePojo.setError("Invalid token");
+            return Response.ok().entity(responsePojo).build();
+        }
     }
 
     @PUT
@@ -38,15 +52,26 @@ public class ItemController
 
     @DELETE
     @Path("/{itemId}")
-    public Item deleteMessage(@PathParam("itemId") int id)
+    public Response deleteItem(@PathParam("itemId") int id)
     {
-        return itemService.removeItem(id);
+        return Response.ok().entity(itemService.removeItem(id)).build();
     }
 
     @GET
-    @Path("/{messageId}")
-    public Item getMessage(@PathParam("messageId") int id)
+    @Path("/{itemId}")
+    public Response getItem(@PathParam("itemId") int id)
     {
-        return itemService.getItem(id);
+        return Response.ok().entity(itemService.getItem(id)).build();
+    }
+
+    @GET
+    @Path("/{itemId/offer}")
+    public Response offerItem(@HeaderParam("authorization") String token, @PathParam("itemId") int id)
+    {
+        User user = authenticationService.validateToken(token);
+        if(user != null)
+        {
+            
+        }
     }
 }
