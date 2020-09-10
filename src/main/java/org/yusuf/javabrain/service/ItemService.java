@@ -55,14 +55,16 @@ public class ItemService
             item.setId(tq.getSingleResult() + 1);
             em.persist(item);
             et.commit();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             if (et != null)
             {
                 et.rollback();
             }
             ex.printStackTrace();
-        } finally
+        }
+        finally
         {
             em.close();
         }
@@ -75,9 +77,9 @@ public class ItemService
         Item newItem = null;
         try
         {
+            newItem = em.find(Item.class, item.getId());
             et = em.getTransaction();
             et.begin();
-            newItem = em.find(Item.class, item.getId());
             newItem.setItemName(item.getItemName());
             newItem.setDescription(item.getDescription());
             newItem.setPrice(item.getPrice());
@@ -115,7 +117,8 @@ public class ItemService
                 et.rollback();
             }
             ex.printStackTrace();
-        } finally
+        }
+        finally
         {
             em.close();
         }

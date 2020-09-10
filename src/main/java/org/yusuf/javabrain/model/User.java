@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "\"User\"")
 public class User implements Serializable
 {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull(message = "Firstname cannot be null")
@@ -29,11 +29,12 @@ public class User implements Serializable
     @NotNull @Email(message = "Email should be valid")
     private String email;
 
+    @NotNull
     private String password;
 
     private String created;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     private List<Item> userItems;
 

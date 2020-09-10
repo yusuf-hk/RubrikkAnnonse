@@ -41,6 +41,7 @@ public class AuthenticationService
 
     public User validateToken(String token)
     {
+        token = token.replace("Bearer ", "");
         try
         {
             if (token != null)

@@ -1,24 +1,10 @@
 package org.yusuf.javabrain.security;
 
-
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.apache.log4j.Logger;
 import org.yusuf.javabrain.model.User;
 import org.yusuf.javabrain.service.UserService;
-
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Path("auth")
 public class AuthenticationController

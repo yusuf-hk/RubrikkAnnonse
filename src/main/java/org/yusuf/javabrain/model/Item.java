@@ -27,6 +27,8 @@ public class Item implements Serializable
 
     private boolean sold;
 
+    private int userid;
+
     @PrePersist
     public void onCreate()
     {

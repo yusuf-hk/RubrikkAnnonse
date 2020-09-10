@@ -12,6 +12,7 @@
         <!-- Define the object that should be persisted in the database -->
         <class>org.yusuf.javabrain.model.Item</class>
         <class>org.yusuf.javabrain.model.User</class>
+        <class>org.yusuf.javabrain.model.Transaction</class>
         <properties>
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
