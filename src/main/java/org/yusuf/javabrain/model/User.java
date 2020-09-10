@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "\"User\"")
 public class User implements Serializable
 {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Integer id;
 
     @NotNull(message = "Firstname cannot be null")

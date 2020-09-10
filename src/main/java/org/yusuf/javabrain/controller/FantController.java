@@ -32,7 +32,7 @@ public class FantController
         User user = authenticationService.validateToken(token);
         if (user != null)
         {
-            return Response.ok().entity(itemService.addItem(item)).build();
+            return Response.ok().entity(itemService.addItem(item, user.getId())).build();
         }
         else
         {
@@ -64,9 +64,11 @@ public class FantController
 
     @DELETE
     @Path("/{itemId}")
-    public Response deleteItem(@PathParam("itemId") int id)
+    public Response deleteItem(@HeaderParam("authorization") String token, @PathParam("itemId") int id)
     {
-        return Response.ok().entity(itemService.removeItem(id)).build();
+        User user = authenticationService.validateToken(token);
+        if(user != null) return Response.ok().entity(itemService.removeItem(id)).build();
+        else return Response.ok().entity("Error, invalid token").build() ;
     }
 
     @GET

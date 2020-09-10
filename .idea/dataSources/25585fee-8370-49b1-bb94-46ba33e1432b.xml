@@ -791,7 +791,7 @@ true posixrules
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>886</IntrospectionStateNumber>
+      <IntrospectionStateNumber>890</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|57686|57677|1
 </Relations>
@@ -845,7 +845,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>887</IntrospectionStateNumber>
+      <IntrospectionStateNumber>891</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="15" parent="2" name="heap">
@@ -939,140 +939,135 @@ true posixrules
       <Owner>postgres</Owner>
       <StateNumber>850</StateNumber>
     </table>
-    <table id="31" parent="14" name="message">
-      <ObjectId>32768</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>622</StateNumber>
-    </table>
-    <table id="32" parent="14" name="transaction">
+    <table id="31" parent="14" name="transaction">
       <ObjectId>57677</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>843</StateNumber>
     </table>
-    <column id="33" parent="29" name="id">
+    <column id="32" parent="29" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="34" parent="29" name="firstname">
+    <column id="33" parent="29" name="firstname">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="35" parent="29" name="lastname">
+    <column id="34" parent="29" name="lastname">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="29" name="email">
+    <column id="35" parent="29" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="29" name="password">
+    <column id="36" parent="29" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="38" parent="29" name="created">
+    <column id="37" parent="29" name="created">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>653</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="39" parent="29" name="user_pk">
+    <index id="38" parent="29" name="user_pk">
       <ObjectId>40978</ObjectId>
       <StateNumber>681</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="40" parent="29" name="user_email_uindex">
+    <index id="39" parent="29" name="user_email_uindex">
       <ObjectId>40980</ObjectId>
       <StateNumber>681</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="41" parent="29" name="user_pk">
+    <key id="40" parent="29" name="user_pk">
       <ObjectId>40979</ObjectId>
       <StateNumber>653</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>user_pk</UnderlyingIndexName>
     </key>
-    <column id="42" parent="30" name="id">
+    <column id="41" parent="30" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>877</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="43" parent="30" name="itemname">
+    <column id="42" parent="30" name="itemname">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>850</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="44" parent="30" name="created">
+    <column id="43" parent="30" name="created">
       <Position>3</Position>
       <DataType>varchar(25)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>794</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="45" parent="30" name="price">
+    <column id="44" parent="30" name="price">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>794</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="46" parent="30" name="description">
+    <column id="45" parent="30" name="description">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>794</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="47" parent="30" name="sold">
+    <column id="46" parent="30" name="sold">
       <Position>6</Position>
       <DataType>boolean|0s</DataType>
       <StateNumber>794</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="48" parent="30" name="userid">
+    <column id="47" parent="30" name="userid">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>794</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="49" parent="30" name="item_pk">
+    <index id="48" parent="30" name="item_pk">
       <ObjectId>57525</ObjectId>
       <StateNumber>850</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="50" parent="30" name="item_pk">
+    <key id="49" parent="30" name="item_pk">
       <ObjectId>57526</ObjectId>
       <StateNumber>817</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>item_pk</UnderlyingIndexName>
     </key>
-    <foreign-key id="51" parent="30" name="item_user_id_fk">
+    <foreign-key id="50" parent="30" name="item_user_id_fk">
       <ObjectId>57488</ObjectId>
       <StateNumber>794</StateNumber>
       <ColNames>userid</ColNames>
@@ -1084,55 +1079,7 @@ true posixrules
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <column id="52" parent="31" name="id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>622</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="53" parent="31" name="created">
-      <Position>2</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>622</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="54" parent="31" name="author">
-      <Position>3</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>622</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="55" parent="31" name="message">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>622</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <index id="56" parent="31" name="message_id_uindex">
-      <ObjectId>32771</ObjectId>
-      <StateNumber>623</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="57" parent="31" name="message_pk">
-      <ObjectId>32772</ObjectId>
-      <StateNumber>624</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-    </index>
-    <key id="58" parent="31" name="message_pk">
-      <ObjectId>32773</ObjectId>
-      <StateNumber>624</StateNumber>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>message_pk</UnderlyingIndexName>
-    </key>
-    <column id="59" parent="32" name="id">
+    <column id="51" parent="31" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1140,35 +1087,35 @@ true posixrules
       <DefaultExpression>nextval(&apos;transaction_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="60" parent="32" name="buyerid">
+    <column id="52" parent="31" name="buyerid">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>881</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="61" parent="32" name="sellerid">
+    <column id="53" parent="31" name="sellerid">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>884</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="62" parent="32" name="itemid">
+    <column id="54" parent="31" name="itemid">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>885</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="63" parent="32" name="transaction_pk">
+    <index id="55" parent="31" name="transaction_pk">
       <ObjectId>57680</ObjectId>
       <StateNumber>843</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="64" parent="32" name="transaction_pk">
+    <key id="56" parent="31" name="transaction_pk">
       <ObjectId>57681</ObjectId>
       <StateNumber>843</StateNumber>
       <ColNames>id</ColNames>

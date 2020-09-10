@@ -42,7 +42,7 @@ public class ItemService
         return item;
     }
 
-    public Item addItem(Item item)
+    public Item addItem(Item item, int ownerid)
     {
         em = emf.createEntityManager();
         String query = "SELECT max (id) from Item";
@@ -53,6 +53,7 @@ public class ItemService
             et = em.getTransaction();
             et.begin();
             item.setId(tq.getSingleResult() + 1);
+            item.setUserid(ownerid);
             em.persist(item);
             et.commit();
         }
